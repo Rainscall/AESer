@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.basePart {
+    display: flex;
+    min-height: 100vh;
+    min-height: 100svh;
+    max-width: 100vw;
+    width: 100%;
+    justify-content: center;
+}
+
+.mainPart {
+    display: flex;
+    max-width: 720px;
+    width: 100%;
+    flex-direction: column;
+    /*background-color: #cbcbcb;*/
+}
+
+.childPart {
+    padding: 16px;
+    margin: 8px;
+    border-radius: 16px;
+}
+
+#originInput {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    min-height: 135px;
+    height: 45svh;
+    padding: 6px 10px;
+    font-size: 13px;
+    line-height: 1.462;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: Lato, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.467;
+    color: #34495e;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+.originInput {
+    background-color: #e3e1e1;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.pwdInput {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    height: 35px;
+    padding: 6px 10px;
+    font-size: 13px;
+    line-height: 1.462;
+    border-radius: 6px;
+    padding: 4px 6px;
+    padding-bottom: 2px;
+    font-family: Lato, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.467;
+    color: #34495F;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    box-shadow: none;
+    margin-top: 2px;
+}
+
+.CS-fakeBtn-black {
+    background-color: #414141;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0 8px 0 8px;
+}
+
+.CS-fakeBtn-black:hover {
+    background-color: #1f1f1f !important;
+    box-shadow: 0px 0px 5px #414141;
+}
+
+.CS-fakeBtn-grey {
+    background-color: #949494;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0 8px 0 8px;
+}
+
+.CS-fakeBtn-grey:hover {
+    background-color: #858585 !important;
+    box-shadow: 0px 0px 5px #e5e5e5;
+}
+
+.opBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 8px;
+}
+
+a {
+    text-decoration: none;
+}
