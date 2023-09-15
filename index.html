@@ -10,12 +10,12 @@
 <body>
     <div class="basePart">
         <div class="mainPart">
-            <div class="childPart">
+            <div class="childPart" style="margin-bottom:0;">
                 <h1>
                     RC4er
                 </h1>
             </div>
-            <div class="childPart" style="min-height: 40px;background-color: #f7f5f5;">
+            <div class="childPart" style="min-height: 40px;background-color: #dddddd59;">
                 <div class="originInput">
                     <textarea type="text" name="originInput" id="originInput"
                         placeholder="Crypted/Encrypted text"></textarea>
@@ -31,23 +31,16 @@
                             <span><span style="color: #ffffff;" id="fakeUpBtnText">Copy</span>
                             </span>
                         </a>
+                        <a href="javascript:void(0);" onclick="resetInput()" class="CS-fakeBtn-grey" id="fakeBtn">
+                            <span><span style="color: #ffffff;" id="fakeUpBtnText">Reset</span>
+                            </span>
+                        </a>
                     </div>
                     <button id="Crypt" style="display: none;">Crypt/Decrypt</button>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function triggerButtonById(buttonId) {
-            const button = document.getElementById(buttonId);
-
-            if (button) {
-                button.click();
-            } else {
-                console.log(`Button with id '${buttonId}' not found.`);
-            }
-        }
-    </script>
     <script src="rc4.js"></script>
     <script>
         // 获取元素
@@ -63,21 +56,7 @@
             originInput.value = ciphertext;
         });
     </script>
-    <script>
-        function copyToClipboard(elementId) {
-            // 获取要复制的元素
-            var element = document.getElementById(elementId);
-
-            // 选择文本
-            element.select();
-
-            // 复制文本到剪贴板
-            document.execCommand('copy');
-
-            // 取消文本选择
-            window.getSelection().removeAllRanges();
-        }
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
