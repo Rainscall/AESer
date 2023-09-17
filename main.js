@@ -25,3 +25,13 @@ function resetInput() {
     document.getElementById('originInput').value = '';
     document.getElementById('pwdInput').value = '';
 }
+
+function encryptAES256(plaintext, key) {
+    const ciphertext = CryptoJS.AES.encrypt(plaintext, key).toString();
+    return ciphertext;
+}
+function decryptAES256(ciphertext, key) {
+    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
+    const plaintext = bytes.toString(CryptoJS.enc.Utf8);
+    return plaintext;
+}

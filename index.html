@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RC4er</title>
+    <title>AESer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
         <div class="mainPart">
             <div class="childPart" style="margin-bottom:0;">
                 <h1>
-                    RC4er
+                    AESer
                 </h1>
             </div>
             <div class="childPart" style="min-height: 40px;background-color: #dddddd59;">
@@ -23,7 +23,12 @@
                     <div class="opBar">
                         <a href="javascript:void(0);" onclick="triggerButtonById('Crypt')" class="CS-fakeBtn-black"
                             id="fakeBtn">
-                            <span><span style="color: #fff;" id="fakeUpBtnText">Crypt/Decrypt</span>
+                            <span><span style="color: #fff;" id="fakeUpBtnText">Crypt</span>
+                            </span>
+                        </a>
+                        <a href="javascript:void(0);" onclick="triggerButtonById('Decrypt')" class="CS-fakeBtn-black"
+                            id="fakeBtn">
+                            <span><span style="color: #fff;" id="fakeUpBtnText">Decrypt</span>
                             </span>
                         </a>
                         <a href="javascript:void(0);" onclick="copyToClipboard('originInput')" class="CS-fakeBtn-grey"
@@ -36,24 +41,37 @@
                             </span>
                         </a>
                     </div>
-                    <button id="Crypt" style="display: none;">Crypt/Decrypt</button>
+                    <button id="Crypt" style="display: none;">Crypt</button>
+                    <button id="Decrypt" style="display: none;">Decrypt</button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="rc4.js"></script>
+    <script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.js"></script>
     <script>
         // 获取元素
         const originInput = document.getElementById("originInput");
         const pwdInput = document.getElementById("pwdInput");
         const cryptButton = document.getElementById("Crypt");
+        const decryptButton = document.getElementById('Decrypt');
 
         // 添加点击事件处理程序
         cryptButton.addEventListener("click", function () {
             const plaintext = originInput.value;
             const password = pwdInput.value;
-            const ciphertext = rc4(password, plaintext);
-            originInput.value = ciphertext;
+            const resultText = encryptAES256(plaintext, password);
+            originInput.value = resultText;
+        });
+
+        decryptButton.addEventListener("click", function () {
+            const plaintext = originInput.value;
+            const password = pwdInput.value;
+            const resultText = decryptAES256(plaintext, password);
+            if (!resultText) {
+                originInput.value = 'Incorrect key';
+            } else {
+                originInput.value = resultText;
+            }
         });
     </script>
     <script src="main.js"></script>
