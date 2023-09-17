@@ -9,16 +9,9 @@ function triggerButtonById(buttonId) {
 }
 
 function copyToClipboard(elementId) {
-    // 获取要复制的元素
     var element = document.getElementById(elementId);
-
-    // 选择文本
     element.select();
-
-    // 复制文本到剪贴板
     document.execCommand('copy');
-
-    // 取消文本选择
     window.getSelection().removeAllRanges();
 }
 function resetInput() {
@@ -34,4 +27,48 @@ function decryptAES256(ciphertext, key) {
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
     const plaintext = bytes.toString(CryptoJS.enc.Utf8);
     return plaintext;
+}
+
+
+function shareText() {
+    var shareCode = document.getElementById('originInput').value;
+    document.getElementById('qrcode').style.display = '';
+
+    if (!shareCode) {
+        console.log('no input');
+    } else {
+        var shareBasePart = document.getElementById('shareBasePart');
+        shareBasePart.style.display = 'flex';
+        clearElement();
+        if (shareCode.length > 940) {
+            shareCode = 'Too long to convert it to QR code.';
+            document.getElementById('qrcodeError').style.display = 'flex';
+            document.getElementById('qrcode').style.display = 'none';
+        } else {
+            shareCode = window.location.href + '?input=' + shareCode;
+            const qrcode = new QRCode('qrcode', {
+                'text': shareCode,
+                'width': 256,
+                'height': 256,
+                'colorDark': 'black',
+                'colorLoght': '#e5e5e5',
+                'correctLevel': QRCode.CorrectLevel.M
+            });
+        }
+        console.log(shareCode);
+    }
+
+}
+
+function closeQRCode() {
+    var shareBasePart = document.getElementById('shareBasePart');
+    shareBasePart.style.display = 'none';
+    document.getElementById('qrcodeError').style, display = 'none';
+}
+
+function clearElement() {
+    var element = document.getElementById("qrcode");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
 }

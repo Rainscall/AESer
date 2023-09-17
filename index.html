@@ -8,6 +8,24 @@
 </head>
 
 <body>
+    <div class="shareBasePart" id="shareBasePart" style="display: none;">
+        <div class="basePart">
+            <div class="mainPart" style="align-items: center;">
+                <div class="childPart QRCode">
+                    <div id="qrcode"></div>
+                    <div id="qrcodeError" style="display: none;"><span>Too long. Max:940</span></div>
+                </div>
+                <div class="childPart closeQRCode">
+                    <div class="opBar noMargin">
+                        <a href="javascript:void(0);" onclick="closeQRCode()" class="CS-fakeBtn-black" id="fakeBtn">
+                            <span><span style="color: #fff;" id="fakeUpBtnText">Close</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="basePart">
         <div class="mainPart">
             <div class="childPart" style="margin-bottom:0;">
@@ -21,25 +39,33 @@
                         placeholder="Crypted/Encrypted text"></textarea>
                     <input type="text" name="pwd" id="pwdInput" class="pwdInput" placeholder="Password">
                     <div class="opBar">
-                        <a href="javascript:void(0);" onclick="triggerButtonById('Crypt')" class="CS-fakeBtn-black"
-                            id="fakeBtn">
-                            <span><span style="color: #fff;" id="fakeUpBtnText">Crypt</span>
-                            </span>
-                        </a>
-                        <a href="javascript:void(0);" onclick="triggerButtonById('Decrypt')" class="CS-fakeBtn-black"
-                            id="fakeBtn">
-                            <span><span style="color: #fff;" id="fakeUpBtnText">Decrypt</span>
-                            </span>
-                        </a>
-                        <a href="javascript:void(0);" onclick="copyToClipboard('originInput')" class="CS-fakeBtn-grey"
-                            id="fakeBtn">
-                            <span><span style="color: #ffffff;" id="fakeUpBtnText">Copy</span>
-                            </span>
-                        </a>
-                        <a href="javascript:void(0);" onclick="resetInput()" class="CS-fakeBtn-grey" id="fakeBtn">
-                            <span><span style="color: #ffffff;" id="fakeUpBtnText">Reset</span>
-                            </span>
-                        </a>
+                        <div class="opBar noMargin">
+                            <a href="javascript:void(0);" onclick="triggerButtonById('Crypt')" class="CS-fakeBtn-black"
+                                id="fakeBtn">
+                                <span><span style="color: #fff;" id="fakeUpBtnText">Crypt</span>
+                                </span>
+                            </a>
+                            <a href="javascript:void(0);" onclick="triggerButtonById('Decrypt')"
+                                class="CS-fakeBtn-black" id="fakeBtn">
+                                <span><span style="color: #fff;" id="fakeUpBtnText">Decrypt</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="opBar noMargin">
+                            <a href="javascript:void(0);" onclick="copyToClipboard('originInput')"
+                                class="CS-fakeBtn-grey" id="fakeBtn">
+                                <span><span style="color: #ffffff;" id="fakeUpBtnText">Copy</span>
+                                </span>
+                            </a>
+                            <a href="javascript:void(0);" onclick="resetInput()" class="CS-fakeBtn-grey" id="fakeBtn">
+                                <span><span style="color: #ffffff;" id="fakeUpBtnText">Reset</span>
+                                </span>
+                            </a>
+                            <a href="javascript:void(0);" onclick="shareText()" class="CS-fakeBtn-grey" id="fakeBtn">
+                                <span><span style="color: #ffffff;" id="fakeUpBtnText">Share</span>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                     <button id="Crypt" style="display: none;">Crypt</button>
                     <button id="Decrypt" style="display: none;">Decrypt</button>
@@ -48,6 +74,7 @@
         </div>
     </div>
     <script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.js"></script>
+    <script src="https://cdn.staticfile.org/qrcodejs/1.0.0/qrcode.js"></script>
     <script>
         // 获取元素
         const originInput = document.getElementById("originInput");
@@ -75,6 +102,7 @@
         });
     </script>
     <script src="main.js"></script>
+    <script src="preInputProcessor.js"></script>
 </body>
 
 </html>
