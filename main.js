@@ -46,6 +46,7 @@ function shareText() {
             document.getElementById('qrcode').style.display = 'none';
         } else {
             shareCode = window.location.href + '?input=' + shareCode;
+            shareCode = encodeURI(shareCode);
             const qrcode = new QRCode('qrcode', {
                 'text': shareCode,
                 'width': 256,
