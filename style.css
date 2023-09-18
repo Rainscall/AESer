@@ -222,3 +222,7 @@ h4 {
     margin: 4px;
     margin-bottom: 0;
 }
+
+#qrcode > img {
+    image-rendering: pixelated;
+}
