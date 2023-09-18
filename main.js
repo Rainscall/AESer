@@ -31,35 +31,38 @@ function decryptAES256(ciphertext, key) {
 
 
 function shareText() {
-    var shareCode = document.getElementById('originInput').value;
-    document.getElementById('qrcode').style.display = '';
+    const shareCode = document.getElementById('originInput').value;
+    const qrcode = document.getElementById('qrcode');
+    qrcode.style.display = '';
 
     if (!shareCode) {
         console.log('no input');
-    } else {
-        var shareBasePart = document.getElementById('shareBasePart');
-        shareBasePart.style.display = 'flex';
-        clearElement();
-        if (shareCode.length > 940) {
-            shareCode = 'Too long to convert it to QR code.';
-            document.getElementById('qrcodeError').style.display = 'flex';
-            document.getElementById('qrcode').style.display = 'none';
-        } else {
-            shareCode = `${encodeURIComponent(shareCode)}`;
-            shareCode = window.location.href + '?input=' + shareCode;
-            const qrcode = new QRCode('qrcode', {
-                'text': shareCode,
-                'width': 256,
-                'height': 256,
-                'colorDark': 'black',
-                'colorLoght': '#e5e5e5',
-                'correctLevel': QRCode.CorrectLevel.M
-            });
-        }
-        console.log(shareCode);
+        return;
     }
 
+    const shareBasePart = document.getElementById('shareBasePart');
+    shareBasePart.style.display = 'flex';
+    clearElement();
+
+    if (shareCode.length > 940) {
+        qrcodeError.style.display = 'flex';
+        qrcode.style.display = 'none';
+        qrcode.textContent = 'Too long to convert it to QR code.';
+        return;
+    }
+
+    const encodedShareCode = encodeURIComponent(shareCode);
+    const shareCodeUrl = `${window.location.href}?input=${encodedShareCode}`;
+    new QRCode(qrcode, {
+        'text': shareCodeUrl,
+        'width': 256,
+        'height': 256,
+        'colorDark': 'black',
+        'colorLoght': '#e5e5e5',
+        'correctLevel': QRCode.CorrectLevel.M
+    });
 }
+
 
 function closeQRCode() {
     var shareBasePart = document.getElementById('shareBasePart');
