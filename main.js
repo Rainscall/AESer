@@ -64,7 +64,7 @@ function shareText() {
 function closeQRCode() {
     var shareBasePart = document.getElementById('shareBasePart');
     shareBasePart.style.display = 'none';
-    document.getElementById('qrcodeError').style, display = 'none';
+    document.getElementById('qrcodeError').style.display = 'none';
 }
 
 function clearElement() {
