@@ -79,7 +79,14 @@ function closeQRCode() {
 async function decryptFile() {
     const originInput = document.getElementById('originInput');
     const ciphertext = originInput.value;
+    const forceDecyptAnimation = document.getElementById('forceDecyptAnimation');
+    forceDecyptAnimation.style.display = "";
     const successfulResults = []; // 用于记录所有成功的解密结果
+
+    if (!originInput.value) {
+        forceDecyptAnimation.style.display = "none";
+        return;
+    }
 
     try {
         const response = await fetch('/pwdDir.txt');
@@ -111,14 +118,17 @@ async function decryptFile() {
                 successfulResults.map(result =>
                     `${result.value}                 ${result.key}`
                 ).join('\n');
+            forceDecyptAnimation.style.display = "none";
             return successfulResults.map(result => result.value);
         } else {
             originInput.value = 'Decryption failed';
+            forceDecyptAnimation.style.display = "none";
             return 'failed';
         }
     } catch (error) {
         console.error('An error occurred: ' + error.message);
         originInput.value = 'An error occurred: ' + error.message;
+        forceDecyptAnimation.style.display = "none";
         return 'failed';
     }
 }

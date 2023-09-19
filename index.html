@@ -17,7 +17,7 @@
                 </div>
                 <div class="childPart closeQRCode">
                     <div class="opBar noMargin">
-                        <a href="javascript:void(0);" onclick="closeQRCode()" class="CS-fakeBtn-black" id="fakeBtn">
+                        <a href="javascript:void(0);" onclick="closeQRCode()" class="CS-fakeBtn-black">
                             <span><span style="color: #fff;" id="fakeUpBtnText">Close</span>
                             </span>
                         </a>
@@ -30,7 +30,7 @@
         <div class="mainPart">
             <div class="childPart" style="margin-bottom:0;">
                 <h1>
-                    AESer
+                    <a href="/" style="color: #484848;">AESer</a>
                 </h1>
             </div>
             <div class="childPart" style="min-height: 40px;background-color: #dddddd59;">
@@ -42,31 +42,38 @@
                     <div class="opBar">
                         <div class="opBar noMargin">
                             <a href="javascript:void(0);" onclick="triggerButtonById('Crypt')" class="CS-fakeBtn-black"
-                                id="fakeBtn">
+                                draggable="false">
                                 <span><span style="color: #fff;" id="fakeUpBtnText">Crypt</span>
                                 </span>
                             </a>
                             <a href="javascript:void(0);" onclick="triggerButtonById('Decrypt')"
-                                class="CS-fakeBtn-black" id="fakeBtn">
+                                class="CS-fakeBtn-black" draggable="false">
                                 <span><span style="color: #fff;" id="fakeUpBtnText">Decrypt</span>
                                 </span>
                             </a>
-                            <a href="javascript:void(0);" onclick="decryptFile()" class="CS-fakeBtn-black" id="fakeBtn">
-                                <span><span style="color: #fff;" id="fakeUpBtnText">Force Decrypt(Unstable)</span>
+                            <a href="javascript:void(0);" onclick="decryptFile()" class="CS-fakeBtn-black"
+                                draggable="false">
+                                <span><span style="color: #fff;" id="fakeUpBtnText">Force Decrypt<div class="lds-ripple"
+                                            id="forceDecyptAnimation" style="display:none;">
+                                            <div></div>
+                                            <div></div>
+                                        </div></span>
                                 </span>
                             </a>
                         </div>
                         <div class="opBar noMargin">
                             <a href="javascript:void(0);" onclick="copyToClipboard('originInput')"
-                                class="CS-fakeBtn-grey" id="fakeBtn">
+                                class="CS-fakeBtn-grey" draggable="false">
                                 <span><span style="color: #ffffff;" id="fakeUpBtnText">Copy</span>
                                 </span>
                             </a>
-                            <a href="javascript:void(0);" onclick="resetInput()" class="CS-fakeBtn-grey" id="fakeBtn">
+                            <a href="javascript:void(0);" onclick="resetInput()" class="CS-fakeBtn-grey"
+                                draggable="false">
                                 <span><span style="color: #ffffff;" id="fakeUpBtnText">Reset</span>
                                 </span>
                             </a>
-                            <a href="javascript:void(0);" onclick="shareText()" class="CS-fakeBtn-grey" id="fakeBtn">
+                            <a href="javascript:void(0);" onclick="shareText()" class="CS-fakeBtn-grey"
+                                draggable="false">
                                 <span><span style="color: #ffffff;" id="fakeUpBtnText">Share</span>
                                 </span>
                             </a>
