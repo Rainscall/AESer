@@ -14,6 +14,36 @@ function copyToClipboard(elementId) {
     document.execCommand('copy');
     window.getSelection().removeAllRanges();
 }
+
+// 定义一个函数，接受一个参数id
+function copyInnerText(id) {
+    // 获取id对应的元素
+    var element = document.getElementById(id);
+    // 判断元素是否存在
+    if (element) {
+        // 获取元素的innerHTML
+        var innerText = element.innerText;
+        // 创建一个临时的textarea元素
+        var textarea = document.createElement("textarea");
+        // 将innerText赋值给textarea的value
+        textarea.value = innerText;
+        // 将textarea添加到文档中
+        document.body.appendChild(textarea);
+        // 选中textarea的内容
+        textarea.select();
+        // 复制选中的内容到剪贴板
+        document.execCommand("copy");
+        // 从文档中移除textarea元素
+        document.body.removeChild(textarea);
+        // 返回成功信息
+        return "已复制" + id + "的innerText到剪贴板";
+    } else {
+        // 返回失败信息
+        return "没有找到" + id + "对应的元素";
+    }
+}
+
+
 function resetInput() {
     document.getElementById('originInput').value = '';
     document.getElementById('pwdInput').value = '';
@@ -79,12 +109,16 @@ function closeQRCode() {
 async function decryptFile() {
     const originInput = document.getElementById('originInput');
     const ciphertext = originInput.value;
-    const forceDecyptAnimation = document.getElementById('forceDecyptAnimation');
-    forceDecyptAnimation.style.display = "";
+    const forceDecyptResultBase = document.getElementById('forceDecyptResultBase');
+    const forceDecyptResult = document.getElementById('forceDecyptResult');
     const successfulResults = []; // 用于记录所有成功的解密结果
 
+    forceDecyptResultBase.style.display = '';
+    forceDecyptResult.innerText = '[COMPUTING...]';
+
     if (!originInput.value) {
-        forceDecyptAnimation.style.display = "none";
+        forceDecyptResultBase.style.display = 'none';
+        forceDecyptResult.innerText = '[WAITING...]';
         return;
     }
 
@@ -114,21 +148,18 @@ async function decryptFile() {
 
         if (successfulResults.length > 0) {
             // 输出成功解密的结果
-            originInput.value = '#Results are for reference only and not guaranteed for correctness.\n#The following will output all possible keys found and the original text\n#plaintext                        key \n\n' +
+            forceDecyptResult.innerText = '#For reference only, accuracy is not guaranteed\n\n' +
                 successfulResults.map(result =>
-                    `${result.value}                 ${result.key}`
+                    `====\nplaintext: ${result.value}\n\nkey: ${result.key}\n====\n\n`
                 ).join('\n');
-            forceDecyptAnimation.style.display = "none";
             return successfulResults.map(result => result.value);
         } else {
-            originInput.value = 'Decryption failed';
-            forceDecyptAnimation.style.display = "none";
+            forceDecyptResult.innerText = 'Decryption failed';
             return 'failed';
         }
     } catch (error) {
         console.error('An error occurred: ' + error.message);
-        originInput.value = 'An error occurred: ' + error.message;
-        forceDecyptAnimation.style.display = "none";
+        forceDecyptResult.innerText = 'An error occurred: ' + error.message;
         return 'failed';
     }
 }
