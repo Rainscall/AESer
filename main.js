@@ -123,7 +123,7 @@ async function decryptFile() {
     }
 
     try {
-        const response = await fetch('/pwdDir.txt');
+        const response = await fetch('pwdDir.txt');
         if (!response.ok) {
             throw new Error('Failed to fetch file');
         }
