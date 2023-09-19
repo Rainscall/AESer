@@ -29,6 +29,12 @@ function decryptAES256(ciphertext, key) {
     return plaintext;
 }
 
+function clearElement() {
+    var element = document.getElementById("qrcode");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
 
 function shareText() {
     const shareCode = document.getElementById('originInput').value;
@@ -116,11 +122,3 @@ async function decryptFile() {
         return 'failed';
     }
 }
-
-
-
-
-
-
-
-
