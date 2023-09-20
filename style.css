@@ -239,6 +239,7 @@ h4 {
     border-radius: 8px;
     margin-top: 8px;
     padding: 8px;
+    overflow-x: scroll;
 }
 
 #forceDecyptResult {
