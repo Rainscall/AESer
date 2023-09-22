@@ -85,8 +85,8 @@
                     <div style="min-height: 3em;padding: 8px;">
                         <div
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;align-items: baseline;">
-                            <h2 style="font-size: 130%;">Force decrypt result:</h2><a href="javascript:void(0);" style="color: #484848;"
-                                onclick="copyInnerText('forceDecyptResult')">Copy</a>
+                            <h2 style="font-size: 130%;">Force decrypt result:</h2><a href="javascript:void(0);"
+                                style="color: #484848;" onclick="copyInnerText('forceDecyptResult')">Copy</a>
                         </div>
                         <div class="forceDecyptResult">
                             <div id="forceDecyptResult">[WAITING...]</div>
@@ -117,7 +117,10 @@
             const plaintext = originInput.value;
             const password = pwdInput.value;
             const resultText = decryptAES256(plaintext, password);
-            if (!resultText) {
+            if (!plaintext) {
+                return;
+            }
+            if (!resultText && password) {
                 originInput.value = 'Incorrect key';
             } else {
                 originInput.value = resultText;
