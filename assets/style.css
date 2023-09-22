@@ -245,3 +245,8 @@ h4 {
 #forceDecyptResult {
     white-space: pre-wrap;
 }
+
+.toastify {
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.217), 0 10px 36px -4px rgba(98, 98, 98, 0.171);
+    border-radius: 8px;
+}

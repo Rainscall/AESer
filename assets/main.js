@@ -45,8 +45,10 @@ function copyInnerText(id) {
 
 
 function resetInput() {
-    document.getElementById('originInput').value = '';
+    originInput.value = '';
     document.getElementById('pwdInput').value = '';
+    forceDecyptResultBase.style.display = 'none';
+    forceDecyptResult.innerText = '[WAITING...]';
 }
 
 function encryptAES256(plaintext, key) {
@@ -73,6 +75,16 @@ function shareText() {
 
     if (!shareCode) {
         console.log('no input');
+        Toastify({
+            text: "Nothing to share.",
+            duration: 800,
+            className: "info",
+            position: "center",
+            gravity: "bottom",
+            style: {
+                background: "#414141",
+            }
+        }).showToast();
         return;
     }
 
@@ -119,6 +131,16 @@ async function decryptFile() {
     if (!originInput.value) {
         forceDecyptResultBase.style.display = 'none';
         forceDecyptResult.innerText = '[WAITING...]';
+        Toastify({
+            text: "Nothing to decrypt.",
+            duration: 800,
+            className: "info",
+            position: "center",
+            gravity: "bottom",
+            style: {
+                background: "#414141",
+            }
+        }).showToast();
         return;
     }
 

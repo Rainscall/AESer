@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AESer</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/toastify-js/1.12.0/toastify.min.css">
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
@@ -98,6 +99,7 @@
     </div>
     <script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.js"></script>
     <script src="https://cdn.staticfile.org/qrcodejs/1.0.0/qrcode.js"></script>
+    <script src="https://cdn.staticfile.org/toastify-js/1.12.0/toastify.min.js"></script>
     <script>
         // 获取元素
         const originInput = document.getElementById("originInput");
@@ -118,6 +120,16 @@
             const password = pwdInput.value;
             const resultText = decryptAES256(plaintext, password);
             if (!plaintext) {
+                Toastify({
+                    text: "Nothing to decrypt.",
+                    duration: 800,
+                    className: "info",
+                    position: "center",
+                    gravity: "bottom",
+                    style: {
+                        background: "#414141",
+                    }
+                }).showToast();
                 return;
             }
             if (!resultText && password) {
@@ -129,6 +141,7 @@
     </script>
     <script src="assets/main.js"></script>
     <script src="assets/preInputProcessor.js"></script>
+
 </body>
 
 </html>
